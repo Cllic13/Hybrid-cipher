@@ -40,7 +40,7 @@ def main():
     result = encrypt_data(user_input, raw_key)
 
     print(f"ENCRYPTED OBJECT: {result}")
-    print(f"TRANSPORT KEY: {transport_key}")
+    print(f"KEY: {transport_key}")
 
 if __name__ == "__main__":
     main()
