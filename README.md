@@ -1,7 +1,7 @@
 # CRYPT-OS: Hybrid Vigenere-Based Cipher
 > **Symmetric stream encryption tool with a bespoke visual terminal**
 
-**English version 🇬🇧** | [Русская версия 🇷🇺](README.md)
+**English version 🇬🇧** | [Русская версия 🇷🇺](README_RU.md)
 
 ## Project Overview
 **CRYPT-OS** is an original implementation of a symmetric encryption algorithm that combines classic character substitution with dynamic index offset calculation. The full version of the programme recreates the atmosphere of a cinematic "hacker terminal", accompanying every stage of the process (key generation, data analysis, encryption) with real-time animations and system logs.
