@@ -7,7 +7,7 @@ def decrypt(cipher, cod_key):
         shift = int(cod_key[-1])
         pure = cod_key[:-1]
         key = pure[-shift:] + pure[:-shift]
-    except: return "ОШИБКА КЛЮЧА"
+    except: return "KEY INVALID"
 
     work_word = cipher[::-1]
     res = []
@@ -35,6 +35,6 @@ def decrypt(cipher, cod_key):
 
     return "".join(res)
 
-cipher = input("Шифрограмма: ")
-key = input("Ключ: ")
-print(f"Результат: {decrypt(cipher, key)}")
+cipher = input("CRYPTOGRAM): ")
+key = input("Key: ")
+print(f"RESULT: {decrypt(cipher, key)}")
