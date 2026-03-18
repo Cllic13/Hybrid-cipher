@@ -28,33 +28,33 @@ def loading_bar(task, length=20):
     print(f"] DONE{COLORS['END']}")
 
 def generate_key(length=15):
-    typing_effect(">>> ЗАПУСК ГЕНЕРАТОРА ЭНТРОПИИ...", color=COLORS["CYAN"])
+    typing_effect(">>> ENTROPY GENERATOR INITIALISATION...", color=COLORS["CYAN"])
     key = ""
     for _ in range(length):
         char = random.choice(ALPHABET[:-1])
         if random.choice([True, False]):
             char += str(random.randint(0, 9))
         key += char
-        sys.stdout.write(f"\r{COLORS['YELLOW']}ПОТОК ДАННЫХ: {key}{COLORS['END']}")
+        sys.stdout.write(f"\r{COLORS['YELLOW']}DATA STREAM: {key}{COLORS['END']}")
         sys.stdout.flush()
         time.sleep(0.03)
-    print("\n[OK] ПЕРВИЧНЫЙ КЛЮЧ СФОРМИРОВАН.")
+    print("\n[OK] PRIMARY KEY GENERATED.")
     return key
 
 def shift_key(key):
     shift = random.randint(1, 9)
     shifted = key[shift:] + key[:shift] + str(shift)
-    loading_bar("ЦИКЛИЧЕСКОЕ СМЕЩЕНИЕ")
+    loading_bar("CIRCULAR SHIFT")
     return shifted
 
 def encrypt_data(word, key):
     encoded = []
-    typing_effect(f"ПРИМЕНЕНИЕ АЛГОРИТМА СЛОЖЕНИЯ ПО МОДУЛЮ {len(ALPHABET)}...", color=COLORS["CYAN"])
+    typing_effect(f"APPLYING MODULO-ADDITION ALGORITHM {len(ALPHABET)}...", color=COLORS["CYAN"])
 
     for i, char in enumerate(word.upper()):
         k_char = key[i % len(key)]
         display_char = "[SPACE]" if char == " " else char
-        sys.stdout.write(f"Защита байта {i:02}: {display_char} + {k_char} -> ")
+        sys.stdout.write(f"BYTE PROTECTION {i:02}: {display_char} + {k_char} -> ")
 
         if k_char.isdigit():
             res = ALPHABET[(ALPHABET.index(char) + int(k_char)) % len(ALPHABET)]
@@ -72,25 +72,25 @@ def main():
     raw_key = generate_key()
     transport_key = shift_key(raw_key)
 
-    print(f"\n{COLORS['BOLD']}ВВЕДИТЕ ДАННЫЕ ДЛЯ ШИФРОВАНИЯ:{COLORS['END']}")
+    print(f"\n{COLORS['BOLD']}ENTER DATA FOR ENCRYPTION:{COLORS['END']}")
     user_input = input(">>> ")
 
-    loading_bar("МАЙНИНГ ДАННЫХ")
+    loading_bar("DATA MINING")
 
     result = encrypt_data(user_input, raw_key)
 
-    loading_bar("ЗЕРКАЛИРОВАНИЕ И ФИНАЛИЗАЦИЯ")
+    loading_bar("MIRRORING AND FINALISATION")
 
     border = "=" * 45
     print(f"\n{COLORS['GREEN']}{border}")
-    typing_effect("ОПЕРАЦИЯ ЗАВЕРШЕНА УСПЕШНО", color=COLORS["BOLD"])
-    print(f"ЗАШИФРОВАННЫЙ ОБЪЕКТ: {COLORS['YELLOW']}{result}{COLORS['END']}")
-    print(f"КЛЮЧ ТРАНСПОРТИРОВКИ: {COLORS['YELLOW']}{transport_key}{COLORS['END']}")
+    typing_effect("OPERATION COMPLETED SUCCESSFULLY", color=COLORS["BOLD"])
+    print(f"ENCRYPTED OBJECT: {COLORS['YELLOW']}{result}{COLORS['END']}")
+    print(f"TRANSPORT KEY: {COLORS['YELLOW']}{transport_key}{COLORS['END']}")
     print(f"{COLORS['GREEN']}{border}{COLORS['END']}")
 
 if __name__ == "__main__":
     try:
         main()
-        input("\nНажмите Enter для выхода...")
+        input("\nPress Enter to exit...")
     except KeyboardInterrupt:
-        print("\nПрервано пользователем.")
+        print("\nAborted by user.")
