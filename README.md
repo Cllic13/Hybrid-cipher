@@ -17,3 +17,15 @@
 ## Technical Stack
 *   **Language:** Python 3.XX
 *   **Standard Libraries:** `random`, `time`, `sys`
+
+## The essence of the algorithm
+If, of course, anyone is actually reading this
+  Look, the logic behind this encoder is dead simple. Here’s how it works, for what it’s worth:
+  
+  First, a key is generated. Minimum length is 15 letters plus one shift digit at the end. It can go up to 30 characters plus that final digit. It’s built by picking random letters from the alphabet (including spaces), with a 50% chance of a digit spawning between the letters. That’s it for now; I’ll probably make the generation more convoluted later, if I don't bin the whole thing.
+  
+  Then, your word gets encrypted using that key. It takes the first letter of your text and the first character of the key and checks them: if it’s a letter or a space, it’s interpreted as a number based on the internal alphabet. If it’s a digit, the value stays as is. Then, the letter of your text shifts along the alphabet by that value (wrapping back to the start if it hits the end). Then it moves to the second letter of your text and the second character of the key, and so on.
+  
+  Once the text is scrambled, your personal key gets encrypted by a random shift digit, and then that digit is tacked onto the very end.
+There is nothing complicated about it. Deepseek or Gemini couldn't decipher it without an algorithm.
+Any ideas or suggestions can be added to the GitHub Discussions. Do not criticize the code. It is still being developed, and I am in degradation.
