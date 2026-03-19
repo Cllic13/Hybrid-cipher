@@ -19,7 +19,7 @@ def hack_effect(text, duration=15):
     chars = "ABCDEF0123456789%&^*@#$"
     for _ in range(duration):
         fake = "".join(random.choice(chars) for _ in range(len(text)))
-        sys.stdout.write(f"\r{GREEN}[АНАЛИЗ ДАННЫХ]: {fake}{END}")
+        sys.stdout.write(f"\r{GREEN}[DATA ANALYSIS]: {fake}{END}")
         sys.stdout.flush()
         time.sleep(0.08)
     print("\r" + " " * (len(text) + 20), end="\r")
@@ -34,18 +34,18 @@ def recover_key(cod_key):
 
 def decoder_pro():
     print(GREEN)
-    matrix_print(">>> ИНИЦИАЛИЗАЦИЯ ДЕШИФРАТОРА v4.2...")
+    matrix_print(">>> DECODER INITIALISATION v4.2...")
 
-    cipher_text = input("[ВВОД ШИФРОГРАММЫ]: ").strip()
-    cod_key = input("[ВВОД КЛЮЧА ДОСТУПА]: ").strip()
+    cipher_text = input("[ENTER CIPHERGRAM]: ").strip()
+    cod_key = input("[ENTER ACCESS KEY]: ").strip()
 
     key = recover_key(cod_key)
     if not key:
-        print(f"{BOLD}ОШИБКА: КЛЮЧ ПОВРЕЖДЕН{END}")
+        print(f"{BOLD}ERROR: KEY CORRUPTED{END}")
         return
 
     hack_effect(cod_key)
-    matrix_print("[OK] КЛЮЧ ВОССТАНОВЛЕН. ДЕКОДИРОВАНИЕ...")
+    matrix_print("[OK] KEY RECOVERED. DECODING...")
 
     work_word = cipher_text[::-1]
     decoded = []
@@ -55,7 +55,7 @@ def decoder_pro():
 
     while i < len(work_word):
         k_char = key[k_idx % len(key)]
-        sys.stdout.write(f"  Байт {i:02} (Key:{k_char}): ")
+        sys.stdout.write(f"  Bytes {i:02} (Key:{k_char}): ")
 
         for _ in range(3):
             sys.stdout.write(random.choice(ALPHABET[:-1]))
@@ -88,13 +88,13 @@ def decoder_pro():
         k_idx += 1
 
     print(f"\n{GREEN}{'='*45}")
-    matrix_print(">>> ДОСТУП РАЗРЕШЕН. РЕЗУЛЬТАТ:")
+    matrix_print(">>> ACCESS GRANTED. RESULT:")
     print(f"{BOLD}{YELLOW} {''.join(decoded)} {END}")
     print(f"{GREEN}{'='*45}{END}")
 
 if __name__ == "__main__":
     try:
         decoder_pro()
-        input("Нажмите Enter для выхода...")
+        input("Press Enter to exit...")
     except KeyboardInterrupt:
         pass
