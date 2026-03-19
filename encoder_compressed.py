@@ -1,18 +1,18 @@
-import random
+from random import choice, randint
 
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ "
 
 def generate_key(length=15):
     key = ""
     for _ in range(length):
-        char = random.choice(ALPHABET[:-1])
-        if random.choice([True, False]):
-            char += str(random.randint(0, 9))
+        char = choice(ALPHABET[:-1])
+        if choice([True, False]):
+            char += str(randint(0, 9))
         key += char
     return key
 
 def shift_key(key):
-    shift = random.randint(1, 9)
+    shift = randint(1, 9)
     return key[shift:] + key[:shift] + str(shift)
 
 def encrypt_data(word, key):
@@ -40,7 +40,7 @@ def main():
     result = encrypt_data(user_input, raw_key)
 
     print(f"ENCRYPTED OBJECT: {result}")
-    print(f"KEY: {transport_key}")
+    print(f"TRANSPORT KEY: {transport_key}")
 
 if __name__ == "__main__":
     main()
