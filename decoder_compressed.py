@@ -35,6 +35,6 @@ def decrypt(cipher, cod_key):
 
     return "".join(res)
 
-cipher = input("CRYPTOGRAM): ")
+cipher = input("CRYPTOGRAM: ")
 key = input("Key: ")
 print(f"RESULT: {decrypt(cipher, key)}")
